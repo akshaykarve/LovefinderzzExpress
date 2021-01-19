@@ -52,7 +52,7 @@ let doEmployeeLogin = async(username, password, res) => {
     if(username!=null && password!=null){
         try{
             employee = await db.employeeLogin(username,password);
-            console.log(employee);
+            // console.log(employee);
             if(employee.length == 1){
                 return employee[0];
             }
@@ -72,12 +72,103 @@ app.get('/employeeLogin/employeeHome', async(req, res, next) => {
     // console.log(employee);
     // console.log(employee['Role']);
     if(employee['Role'] == "Manager"){
-        res.render('managerHome');
+        res.render('managerHome', {employee:employee});
     } else if(employee['Role'] == "CustRep"){
         res.render('custRepHome', {employee:employee});
     } else {
         res.render('employeeLoginFail');
     }
+});
+
+app.get('/employeeLogin/employeeHome/addEmployee', async(req, res, next) => {
+    let username = req.query.user;
+    let password = req.query.pass;
+    let employee = await doEmployeeLogin(username, password, res);
+    // console.log(employee);
+    if (!employee)
+        return;
+    
+    // console.log(employee['Role']);
+    res.render('managerAddEmployee', {employee:employee});
+});
+
+app.get('/employeeLogin/employeeHome/viewEditDeleteEmployee', async(req, res, next) => {
+    let username = req.query.user;
+    let password = req.query.pass;
+    let employee = await doEmployeeLogin(username, password, res);
+    // console.log(employee);
+    if (!employee)
+        return;
+    let employeeList = await db.employeeDetails();
+    // console.log(employeeList);
+    // console.log(employee['Role']);
+    res.render('managerViewEditDeleteEmployee', {employee:employee, employeeList:employeeList});
+});
+
+app.get('/employeeLogin/employeeHome/addCustomer', async(req, res, next) => {
+    let username = req.query.user;
+    let password = req.query.pass;
+    let employee = await doEmployeeLogin(username, password, res);
+    // console.log(employee);
+    if (!employee)
+        return;
+    
+    // console.log(employee['Role']);
+    res.render('managerAddCustomer', {employee:employee});
+});
+
+app.get('/employeeLogin/employeeHome/viewEditDeleteCustomer', async(req, res, next) => {
+    let username = req.query.user;
+    let password = req.query.pass;
+    let employee = await doEmployeeLogin(username, password, res);
+    // console.log(employee);
+    if (!employee)
+        return;
+    let customerList = await db.customerDetails();
+    // console.log(employeeList);
+    // console.log(employee['Role']);
+    res.render('managerViewEditDeleteCustomer', {employee:employee, customerList:customerList});
+});
+
+app.get('/employeeLogin/employeeHome/salesReport', async(req, res, next) => {
+    let username = req.query.user;
+    let password = req.query.pass;
+    let employee = await doEmployeeLogin(username, password, res);
+    // console.log(employee);
+    if (!employee)
+        return;
+    res.render('managerSalesReport', {employee:employee});
+});
+
+app.get('/employeeLogin/employeeHome/viewAllUsers', async(req, res, next) => {
+    let username = req.query.user;
+    let password = req.query.pass;
+    let employee = await doEmployeeLogin(username, password, res);
+    // console.log(employee);
+    if (!employee)
+        return;
+    let customerList = await db.customerDetails();
+    res.render('managerViewAllUsers', {employee:employee, customerList:customerList});
+});
+
+app.get('/employeeLogin/employeeHome/viewDates', async(req, res, next) => {
+    let username = req.query.user;
+    let password = req.query.pass;
+    let employee = await doEmployeeLogin(username, password, res);
+    // console.log(employee);
+    if (!employee)
+        return;
+    res.render('managerViewDates', {employee:employee});
+});
+
+app.get('/employeeLogin/employeeHome/revenueByDates', async(req, res, next) => {
+    let username = req.query.user;
+    let password = req.query.pass;
+    let employee = await doEmployeeLogin(username, password, res);
+    // console.log(employee);
+    if (!employee)
+        return;
+    res.render('managerRevenueByDates', {employee:employee});
 });
 
 // Express app on port 8080

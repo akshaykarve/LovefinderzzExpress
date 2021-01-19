@@ -22,6 +22,30 @@ user.employeeLogin = (usr, pass) => {
     });
 }
 
+user.employeeDetails = () => {
+    return new Promise((resolve, reject) => {
+        let sql = `SELECT * FROM employee e, person p where p.SSN=e.SSN;`;
+        pool.query(sql, (err,results) => {
+            if(err){
+                return reject(err);
+            }
+            return resolve(results)
+        });
+    });
+}
+
+user.customerDetails = () => {
+    return new Promise((resolve, reject) => {
+        let sql = `SELECT * FROM person p, user u, account a where p.SSN=u.SSN and p.SSN=a.OwnerSSN;`;
+        pool.query(sql, (err,results) => {
+            if(err){
+                return reject(err);
+            }
+            return resolve(results)
+        });
+    });
+}
+
 user.customerLogin = (usr, pass) => {
     return new Promise((resolve, reject) => {
         let sql = `SELECT * FROM person p, user u where u.SSN=p.SSN AND Email=? AND Password=?;`;

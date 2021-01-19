@@ -1,0 +1,39 @@
+<h1 class="text-center"> Find Dates </h1>
+
+<h3> Search Options: </h3>
+
+<div class="container pt-4">
+    <div class="row">
+        <div class="col">
+            <div class="container p-4 m-4">
+                <h4>Search by Calendar Date</h4>
+                <form method="get" id="searchByCalendarDate">
+                    <form method="post" id="searchByCalendarDate">
+                        <input type="hidden" name="user" value="{{employee.Email}}">
+                        <input type="hidden" name="pass" value="{{employee.Password}}"> 
+                    </form>
+                    <label class="mt-2" for='SearchDate'>Date</label>
+                    <input class="form-control" type="date" name="SearchDate" required>
+                    <input class="btn btn-primary mt-2" type="submit" value="Search" form="searchByCalendarDate">
+                </form>
+            </div>
+        </div>
+        <div class="col">
+            <div class="container p-4 m-4">
+                <h4>Search by Customer</h4>
+                <form method="get" id="searchByCustomerName">
+                    <form method="post" id="searchByCustomerName">
+                        <input type="hidden" name="user" value="{{employee.Email}}">
+                        <input type="hidden" name="pass" value="{{employee.Password}}"> 
+                    </form>
+                    <label class="mt-2" for='SearchName'>Customer Name</label>
+                    <input class="form-control" type="text" placeholder="Customer Name" name="SearchName" required>
+                    <input class="btn btn-primary mt-2" type="submit" value="Search" form="searchByCustomerName">
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <a class="btn btn-primary m-4" href="/employeeLogin/employeeHome?user={{employee.Email}}&pass={{employee.Password}}">Back To Home</a>  
+    </div>
+</div>

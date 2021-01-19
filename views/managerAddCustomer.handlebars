@@ -1,0 +1,56 @@
+<h1 class="text-center">Add A New Customer</h1>
+<form action='' id='AddCustomer'>
+    <input type="hidden" name="user" value="{{employee.Email}}">
+    <input type="hidden" name="pass" value="{{employee.Password}}">
+
+    <label class="mt-2" for='Email'>Email Address</label>
+    <input class='form-control' type='email' name='Email' placeholder="johndoe@gmail.com" required>
+
+    <label class="mt-2" for='Password'>Password</label>
+    <input class='form-control' type='password' name='Password' required>
+
+    <label class="mt-2" for='FirstName'>First Name</label>
+    <input class='form-control' type='text' name='FirstName' placeholder="First Name" required>
+
+    <label class="mt-2" for='LastName'>Last Name</label>
+    <input class='form-control' type='text' name='LastName' placeholder="Last Name" required>
+
+    <label class="mt-2" for='Address'>Address</label>
+    <input class='form-control' type='text' name='Address' placeholder="Address" required>
+
+    <label class="mt-2" for='City'>City</label>
+    <input class='form-control' type='text' name='City' placeholder="City" required>
+
+    <label class="mt-2" for='State'>State</label>
+    <input class='form-control' type='text' name='State' placeholder="State" required>
+
+    <label class="mt-2" for='Zipcode'>Zipcode</label>
+    <input class='form-control' type='number' name='Zipcode' placeholder="Zipcode" required>
+
+    <label class="mt-2" for='Telephone'>Telephone</label>
+    <input class='form-control' type='tel' name='Telephone' placeholder="(###) ###-####" pattern="([0-9]{3}) [0-9]{3}-[0-9]{4}" required>
+
+    <label class="mt-2" for='SSN'>SSN</label>
+    <input class='form-control' type='text' name='SSN' placeholder="555-55-5555" pattern="\d{3}-?\d{2}-?\d{4}" required>
+
+    <label class="mt-2" for='StartDate'>Account Creation Date</label>
+    <input class='form-control' type='date' name='StartDate' required>
+
+    <label class="mt-2" for='CreditCard'>Credit Card Number</label>
+    <input class='form-control' type='number' name='CreditCard' placeholder="Card Number" required>
+
+    <label class="mt-2" for='ProfilePlacement'>Profile Placement Priority</label>
+    <br>
+    <select id='ProfilePlacement' name='ProfilePlacement'>
+        <option value="Super-User">Super-User</option>
+        <option value="Good-User">Good-User</option>
+        <option value="User-User">User-User</option>
+    </select>
+    <br>
+
+    <label class="mt-2" for='Raiting'>Rating</label>
+    <input class='form-control' type='number' name='Rating' min="1" max="5" placeholder="1 - 5 (default 3)" required>
+
+    <input class='btn btn-primary' type='submit' value='Submit' form='AddCustomer' formaction="">
+    <a class="btn btn-primary m-4" href="/employeeLogin/employeeHome?user={{employee.Email}}&pass={{employee.Password}}">Back To Home</a>  
+</form>
